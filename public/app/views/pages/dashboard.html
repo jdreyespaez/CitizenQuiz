@@ -1,0 +1,68 @@
+<div ng-show='dashboard.users'>
+
+<div class="container">
+	<h5 class="title-default grey-text dashboard-title left-align row">Un pequeño resumen: </h5>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="card col s4 yellow darken-1">
+		<a href="/users">
+			<div class="number white-text">
+				{{ dashboard.userCount }}
+			</div>
+			<div class="model white-text">
+				Usuarios
+			</div>
+		</a>		
+		</div>
+		<div class="card col s6 light-blue">
+			<div class="number white-text">
+				{{ dashboard.projectCount }}
+			</div>
+			<div class="model white-text">
+				Proyectos
+			</div>
+		</div>
+		<div class="card col s4 red">
+			<div class="number white-text">
+				{{ dashboard.threadCount }}
+			</div>
+			<div class="model white-text">
+				hilos en el foro
+			</div>
+		</div>
+		<div class="card col s6 green">
+			<a href="/materiales">
+			<div class="number white-text">
+				{{ dashboard.materialCount }}
+			</div>
+			<div class="model white-text">
+				materiales
+			</div>
+			</a>
+		</div>
+		<div class="card col s4 orange">
+			<a href="/areas">
+			<div class="number white-text">
+				{{ dashboard.areaCount }}
+			</div>
+			<div class="model white-text">
+				Areas
+			</div>
+			</a>
+		</div>
+	</div>
+</div>
+
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">add</i>
+    </a>
+    <ul>
+      <li><a href="/users/create" class="btn-floating red"><i class="material-icons">perm_identity</i></i></a></li>
+      <li><a href="/materiales/create" class="btn-floating yellow darken-1"><i class="fa fa-file-text-o"></i></a></li>
+      <li><a href="/mensajes/create" class="btn-floating green"><i class="material-icons">chat_bubble</i></a></li>
+    </ul>
+  </div>
+</div>

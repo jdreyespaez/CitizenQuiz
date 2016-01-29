@@ -1,0 +1,66 @@
+<div class="container single-user">
+	<h4 ng-if="user.type == 'create'" class="title-default grey-text users__title row">
+		Crear un usuario
+	</h4>
+	<h4 ng-if="user.type == 'edit'" class="title-default grey-text users__title row">
+		Editar un usuario
+	</h4>
+</div>
+
+<div class="container single-user__form">
+	<div class="row card-panel">
+    <form class="col s12" ng-submit="user.saveUser()">
+      <div class="row">
+        <div class="input-field col s6">
+          <input ng-model="user.userData.name" type="text" class="validate" placeholder="First Name">
+        </div>
+        <div class="input-field col s6">
+          <input ng-model="user.userData.lastName"type="text" class="validate" placeholder="Last Name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="user.userData.username" type="text" class="validate" placeholder="Username">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="user.userData.password" type="text" class="validate" placeholder="Password">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="user.userData.email" type="email" class="validate" placeholder="Email">
+        </div>
+      </div>
+      <div class="row">
+		 <div class="input-field col s12">
+        <select class="browser-default" ng-model="user.userData.area" >
+          <option ng-repeat="area in user.areas" value="{{area.name}}">{{area.name}}</option>
+        </select>
+ 		</div>
+ 	   </div>
+ 	   <div class="row">
+ 	   		<div class="col s6">
+ 	   			<p>
+			      <input type="checkbox" id="admin" ng-model="user.userData.admin" ng-true-value="true" ng-false-value="false"/>
+			      <label for="admin">Admin</label>
+			    </p>
+ 	   		</div>
+ 	   		<div class="col s6">
+ 	   			<p>
+			      <input type="checkbox" id="client" ng-model="user.userData.client" ng-true-value="true" ng-false-value="false"/>
+			      <label for="client">Client</label>
+			    </p>
+ 	   		</div>
+ 	   </div>
+ 	   	<button class="btn waves-effect waves-light input-field col s12  m4 l4 offset-m4 offset-l4" type="submit">
+	      	<span ng-if="user.type == 'create'">Crear usuario</span>
+	      	<span ng-if="user.type == 'edit'">Actualizar usuario</span>
+	    </button>  	
+    </form>
+    <div class="row u-alert">
+	  	<div class="center-align green-text" ng-if="user.message"> {{ user.message }} </div>
+	</div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="users-bg"></div>
+<div class="container users materiales-card">
+	<div class="row">
+		<div class="row s12 m12 l12 card-panel users__table" ng-show="user.users">
+	<h4 class="title-default grey-text users__title">
+		Usuarios:
+	</h4>
+			<table>
+		        <thead>
+		          <tr>
+		              <th class="grey-text">Name</th>
+		              <th class="grey-text">Last Name</th>
+		              <th class="grey-text">Area</th>
+		              <th class="grey-text">Username</th>
+		              <th class="grey-text">Points</th>
+		              <th class="grey-text">Actions</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		          <tr ng-repeat="person in user.users">
+		            <td>{{person.name}}</td>
+		            <td>{{person.lastName}}</td>
+		            <td>{{person.area}}</td>
+		            <td>{{person.username}}</td>
+		            <td>{{person.points}}</td>
+		            <td>
+		            	<a ng-href="/users/{{ person._id }}">
+		            		<i class="fa fa-eye"></i>
+		            	</a>	
+		            	<a ng-href="/users/{{ person._id }}/edit">
+		            		<i class="fa fa-1x fa-pencil"></i>
+		            	</a>
+		            	<a href="#" ng-click="user.deleteUser(person._id)">
+		            		<i class="fa fa-1x fa-trash-o"></i>
+		            	</a>		
+		            </td>
+		          </tr>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
+</div>
+ <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+<a class="btn-floating btn-large waves-effect waves-light red" href="users/create"><i class="material-icons">add</i></a>
+  </div>

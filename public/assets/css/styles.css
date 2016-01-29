@@ -1,0 +1,26 @@
+.spinner-red-only{border-color:#fff}
+.header{padding:.5em 0 0 0}
+.user__avatar{display:block;margin-left:auto;margin-right:auto}
+.user__name{font-weight:300;margin-bottom:20px}
+.header__title,.title-default{font-weight:300}
+.header-row{margin-bottom:0}
+.main{margin-top:40px}
+.dashboard-title{margin:2em 0}
+.dashboard-data{font-size:16px;margin-top:15px}
+.dashboard-stats,.dashboard-action,.single-user,.user-view{margin-top:3em}
+.dashboard-action,.single-user,margin-bottom 2em,.u-link{cursor:pointer;text-decoration:underline}
+.ng-enter{-webkit-animation:fadeIn .7s both ease-in;-moz-animation:fadeIn .7s both ease-in;animation:fadeIn .7s both ease-in}
+.ng-leave{-webkit-animation:fadeOut .01s both ease-in;-moz-animation:fadeOut .01s both ease-in;animation:fadeOut .01s both ease-in}
+.users{margin-top:3em;position:relative}
+.users__table{border-sizing:border-box;padding:1em}
+.users__title{margin-bottom:1em}
+.u-alert{margin-top:1em}
+.card{margin:3em 3em 3em 0;border-radius:7px;}
+.card .number,.card .model{text-align:center}
+.card .number{font-size:60px;font-weight:300}
+.card .model{margin-bottom:2em}
+.materials-bg{background:url("../img/materiales.jpg");background-size:cover;width:100%;height:300px}
+.areas-bg{background:url("../img/areas.jpg");background-size:cover;width:100%;height:300px}
+.users-bg{background:url("../img/usuarios.jpg");background-size:cover;width:100%;height:300px}
+.mensajes-bg{background:url("../img/mensajes.jpg");background-size:cover;width:100%;height:300px}
+.materiales-card{position:relative;top:-200px}

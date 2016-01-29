@@ -1,0 +1,29 @@
+<div class="container single-user">
+	<h4 ng-if="area.type === 'create'" class="title-default grey-text users__title row">
+		Crear un area
+	</h4>
+	<h4 ng-if="area.type === 'edit'" class="title-default grey-text users__title row">
+		Editar un area
+	</h4>
+</div>
+
+<div class="container single-user__form">
+	<div class="row card-panel">
+    <form class="col s12" ng-submit="area.saveArea()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="area.areaData.name" type="text" class="validate" placeholder="Nombre del area">
+        </div>
+      </div>
+      <div class="row">
+ 	   </div>
+ 	   	<button class="btn waves-effect waves-light input-field col s12  m4 l4 offset-m4 offset-l4" type="submit">
+	      	<span ng-if="area.type === 'create'">Crear area</span>
+	      	<span ng-if="area.type === 'edit'">Actualizar area</span>
+	    </button>  	
+    </form>
+    <div class="row u-alert">
+	  	<div class="center-align green-text" ng-if="area.message"> {{ area.message }} </div>
+	</div>
+  </div>
+</div>

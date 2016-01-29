@@ -1,0 +1,44 @@
+<div class="container single-user">
+	<h4 ng-if="material.type === 'create'" class="title-default grey-text users__title row">
+		Crear un material
+	</h4>
+	<h4 ng-if="material.type === 'edit'" class="title-default grey-text users__title row">
+		Editar un material
+	</h4>
+</div>
+
+<div class="container single-user__form">
+	<div class="row card-panel">
+    <form class="col s12" ng-submit="material.saveMaterial()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="material.materialData.title" type="text" class="validate" placeholder="Titulo">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" ng-model="material.materialData.content" placeholder="Contenido" class="materialize-textarea"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="material.materialData.rewardPoints" type="number" class="validate" placeholder="Reward Points">
+        </div>
+      </div>
+      <div class="row">
+		 <div class="input-field col s12">
+		    <select class="browser-default" ng-model="material.materialData.area" >
+		      <option ng-repeat="area in material.areas" value="{{area.name}}">{{area.name}}</option>
+		    </select>
+ 		 </div>
+ 	   </div>
+ 	   	<button class="btn waves-effect waves-light input-field col s12  m4 l4 offset-m4 offset-l4" type="submit">
+	      	<span ng-if="material.type === 'create'">Crear material</span>
+	      	<span ng-if="material.type === 'edit'">Actualizar material</span>
+	    </button>  	
+    </form>
+    <div class="row u-alert">
+	  	<div class="center-align green-text" ng-if="material.message"> {{ material.message }} </div>
+	</div>
+  </div>
+</div>

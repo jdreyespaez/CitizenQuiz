@@ -1,0 +1,46 @@
+<div class="container">
+	<div class="col s8 m6 l6 card-panel">
+		<div class="row">
+			<div class="col s12 m6 l6 offset-m3 offset-l3 center-align">
+				<h3>Citizen</h3>
+			</div>
+		</div>
+		<form ng-submit="login.doLogin()">
+			<div class="row">
+				<div class="input-field col s12  m6 l6 offset-m3 offset-l3">
+					<i class="material-icons prefix">perm_identity</i>
+					<input type="text" id="username" class="validate" ng-model="login.loginData.username">
+					<label for="username">User name</label>
+				</div>
+			</div>
+			<div class="row">
+		        <div class="input-field col s12  m6 l6 offset-m3 offset-l3">
+		        	<i class="material-icons prefix">lock</i>
+		          <input id="password" type="password" class="validate" ng-model="login.loginData.password">
+		          <label for="password">Password</label>
+		        </div>
+	      </div>
+	      <div class="row">
+	      	<button class="btn waves-effect waves-light input-field col s12  m4 l4 offset-m4 offset-l4" type="submit">
+	      		<span ng-if="!login.processing">Log in</span>
+	      		<span ng-if="login.processing" class="spinner">
+					<div class="preloader-wrapper small active">
+					    <div class="spinner-layer spinner-red-only">
+					      <div class="circle-clipper left">
+					        <div class="circle"></div>
+					      </div><div class="gap-patch">
+					        <div class="circle"></div>
+					      </div><div class="circle-clipper right">
+					        <div class="circle"></div>
+					      </div>
+					    </div>
+					  </div>
+	      		</span>
+		  </button>
+		  </div>
+		  <div class="row">
+		  	<div class="center-align red-text" ng-if="login.error"> {{ login.error }}</div>
+		  </div>
+		</form>
+	</div>
+</div>

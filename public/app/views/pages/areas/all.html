@@ -1,0 +1,32 @@
+<div class="areas-bg"></div>
+<div class="container users materiales-card">
+	<div class="row">
+		<div class="row s12 m12 l12 card-panel users__table" ng-show="area.areas">
+	<h4 class="title-default grey-text users__title">
+		Areas:
+	</h4>
+			<table>
+		        <thead>
+		          <tr>
+		              <th class="grey-text">Name</th>
+		              <th class="grey-text">Actions</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		          <tr ng-repeat="item in area.areas">
+		            <td>{{item.name}}</td>
+		            <td>
+		            	<a href="#" ng-click="area.deleteArea(item._id)">
+		            		<i class="fa fa-1x fa-trash-o"></i>
+		            	</a>		
+		            </td>
+		          </tr>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
+</div>
+ <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+<a class="btn-floating btn-large waves-effect waves-light red" href="areas/create"><i class="material-icons">add</i></a>
+  </div>

@@ -1,0 +1,19 @@
+<div class="container user-view">
+	<h4 class="col s12 title-default grey-text user-view__title row">
+		{{ material.materialData.title }}
+	</h4>
+
+	  <h6 class="itle-default grey-text user-view__title row">{{ material.materialData.rewardPoints }} puntos</h6>
+
+	<div class="card-panel col s12">
+		<p class="grey-text">
+			{{ material.materialData.content }}
+		</p>
+	</div>
+</div>
+
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red" href="/materiales/{{ material.materialData._id }}/edit">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+  </div>

@@ -1,0 +1,44 @@
+<div class="materials-bg"></div>
+<div class="container users materiales-card">
+
+	<div class="row">
+		<div class="row s12 m12 l12 card-panel users__table" ng-show="material.materials">
+				<h4 class="title-default grey-text users__title">
+		Materiales:
+	</h4>
+			<table>
+		        <thead>
+		          <tr>
+		              <th class="grey-text">Title</th>
+		              <th class="grey-text">Reward points</th>
+		              <th class="grey-text">Area</th>
+		              <th class="grey-text">Actions</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		          <tr ng-repeat="item in material.materials">
+		            <td>{{item.title}}</td>
+		            <td>{{item.rewardPoints}}</td>
+		            <td>{{item.area}}</td>
+		            <td>
+		            	<a ng-href="/materiales/{{ item._id }}">
+		            		<i class="fa fa-eye"></i>
+		            	</a>	
+		            	<a ng-href="/materiales/{{ item._id }}/edit">
+		            		<i class="fa fa-1x fa-pencil"></i>
+		            	</a>
+		            	<a href="#" ng-click="material.deleteMaterial(item._id)">
+		            		<i class="fa fa-1x fa-trash-o"></i>
+		            	</a>		
+		            </td>
+		          </tr>
+		        </tbody>
+		    </table>
+		</div>
+	</div>
+</div>
+ <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+<a class="btn-floating btn-large waves-effect waves-light red" href="materiales/create"><i class="material-icons">add</i></a>
+  </div>
+

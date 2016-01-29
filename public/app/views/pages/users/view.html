@@ -1,0 +1,40 @@
+<div class="container user-view">
+	<h4 class="col s12 title-default grey-text user-view__title row">
+		{{ user.userData.name }} {{ user.userData.lastName }}
+	</h4>
+
+	<div class="card-panel col s12">
+		<div class="row">
+			<div class="col s6">
+				<p class="grey-text">
+					Area: {{ user.userData.area }}
+				</p>
+			</div>
+			<div class="col s6">
+				<p class="grey-text">
+					Email: {{ user.userData.email }}
+				</p>
+			</div>
+			<div class="col s6">
+				<p class="grey-text">
+					Username: {{ user.userData.username }}
+				</p>
+			</div>
+			<div class="col s6">
+				<p class="grey-text">
+					Sent Projects: {{ user.userData._sentProjects}}
+				</p>
+			</div>
+			<div class="col s6">
+				<p class="grey-text">
+					Sent Threads: {{ user.userData._sentThreads}}
+				</p>
+			</div>
+			<div class="col s6">
+				<p class="grey-text">
+					Points: {{ user.userData.points}}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>	

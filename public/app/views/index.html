@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"> <head>
+<meta charset="UTF-8"> 
+<title>Citizen</title>
+  <!-- FOR ANGULAR ROUTING -->
+<base href="/">
+<!-- CSS -->
+<!-- load bootstrap from CDN and custom CSS -->
+<link rel="stylesheet" href="assets/libs/css/materialize.min.css">
+<link rel="stylesheet" href="assets/libs/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- JS -->
+<!-- load angular and angular-route via CDN -->
+<script src="assets/libs/js/angular.js"></script>
+<script src="assets/libs/js/angular-route.js"></script>
+<script src="assets/libs/js/angular-animate.js"></script>
+<script src="assets/libs/js/jquery.min.js"></script>
+<script src="assets/libs/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<script src="app/controllers/mainCtrl.js"></script> 
+<script src="app/controllers/userCtrl.js"></script>
+<script src="app/controllers/dashboardCtrl.js"></script>
+<script src="app/controllers/materialCtrl.js"></script>
+<script src="app/controllers/areaCtrl.js"></script>
+<script src="app/controllers/messageCtrl.js"></script>
+  <!-- services -->
+<script src="app/services/authService.js"></script>
+<script src="app/services/userService.js"></script>
+<script src="app/services/projectService.js"></script>
+<script src="app/services/areaService.js"></script>
+<script src="app/services/commentService.js"></script>
+<script src="app/services/threadService.js"></script>
+<script src="app/services/materialService.js"></script>
+<script src="app/services/messageService.js"></script>
+  <!-- main Angular app files -->
+<script src="app/app.routes.js"></script>
+<script src="app/app.js"></script>
+
+</head>
+
+<body ng-app="userApp" class="grey lighten-4" ng-controller="mainController as main">
+
+<header class="green ligthen-2 header" ng-if="main.loggedIn">
+  <div class="container">
+    <div class="row col s12 m12 l12 right-align">
+      <p ng-if="!main.loggedIn"><a href="/login white-text">Login</a></p>
+      <p ng-if="main.loggedIn" class="white-text">Hello {{ main.user.username }}! | <a ng-if="main.loggedIn" ng-click="main.doLogout()" class="white-text u-link" style="cursor:pointer;">logout</a></p>
+    </div>
+    <div class="row valign-wrapper header-row">
+      <h3 class="white-text header__title col s12 m5 l5">Citizen</h3>
+    </div>
+  </div>
+  <nav class="white">
+    <div class="nav-wrapper container">
+      <ul>
+        <li><a class="grey-text" href="/dashboard">Inicio</a></li>
+        <li><a class="grey-text" href="/materiales">Materiales</a></li>
+        <li><a class="grey-text" href="/areas">Áreas</a></li>
+        <li><a class="grey-text" href="/users">Usuarios</a></li>
+        <li><a class="grey-text" href="/mensajes">Mensajes</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+	<div ng-view></div>
+</main>
+
+</body>
+</html>
