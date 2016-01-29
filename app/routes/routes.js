@@ -50,7 +50,6 @@ apiRouter.post('/authenticate', function(req, res) {
 		}
 
 	});
-
 });
 
 apiRouter.use(function(req, res, next) {
@@ -71,30 +70,33 @@ apiRouter.use(function(req, res, next) {
 			}
 		});
 	} else {
-		return res.status(403).send({
-			success: false,
-			menssage: 'Token no enviado'
-		});
+		// return res.status(403).send({
+		// 	success: false,
+		// 	menssage: 'Token no enviado'
+		// });
+		next();
 	}
 
 });
 
 apiRouter.use(function(req, res, next) {
 
-	admin = false;
+	admin = true;
 
-	User.findOne({
-		_id: req.decoded._id
-	}).exec(function(err, user) {
+	// User.findOne({
+	// 	_id: req.decoded._id
+	// }).exec(function(err, user) {
+	//
+	// 	if (user.admin === true) {
+	// 		admin = true;
+	// 		next();
+	// 	} else {
+	// 		next();
+	// 	}
+	//
+	// });
 
-		if (user.admin === true) {
-			admin = true;
-			next();
-		} else {
-			next();
-		}
-
-	});
+	next();
 
 });
 
@@ -103,11 +105,11 @@ apiRouter.route('/materiales')
 	.get(function(req, res) {
 
 		Material.find(function(err, materials) {
-		
+
 			if (err) res.send(err);
-			
+
 			res.json(materials);
-        
+
 		});
 
 	})
@@ -120,7 +122,7 @@ apiRouter.route('/materiales')
 			material.content =      req.body.content;
 			material.rewardPoints = req.body.rewardPoints;
 			material.area =         req.body.area;
-			
+
 			material.save(function(err) {
 				if (err) res.send(err);
 				res.json({ message: 'Material creado!' });
@@ -133,9 +135,9 @@ apiRouter.route('/materiales/:material_id')
 	.get(function(req, res) {
 
 		Material.findById(req.params.material_id, function(err, material) {
-		
+
 			if (err) res.send(err);
-    
+
 			res.json(material);
 		});
 
@@ -158,7 +160,7 @@ apiRouter.route('/materiales/:material_id')
 				if(req.body.monthViews) material.monthViews = req.body.monthViews;
 
 				material.save(function(err) {
-					
+
 					if(err) res.send(err);
 
 					res.json({ message: 'Material actualizado!' });
@@ -174,7 +176,7 @@ apiRouter.route('/materiales/:material_id')
 	})
 
 	.delete(function(req, res) {
-		
+
 		if (admin) {
 
 			Material.remove({
@@ -184,7 +186,7 @@ apiRouter.route('/materiales/:material_id')
 		}, function(err, user) {
 			if (err) res.send(err);
 			res.json({ message: 'Successfully deleted' });
-          
+
           });
 		} else {
 			return res.status(403).send({
@@ -201,9 +203,9 @@ apiRouter.route('/materiales/area/:area_id')
 		Material.find({
 			area: req.params.area_id
 		}).exec(function(err, materials) {
-		
+
 			if (err) res.send(err);
-    
+
 			res.json(materials);
 		});
 
@@ -230,11 +232,11 @@ apiRouter.route('/proyectos')
 		project._creator = req.decoded._id;
 
 		project.save(function(err) {
-			
+
 			if (err) res.send(err);
 
 			User.findById(req.decoded._id, function(err, user) {
-				
+
 				console.log(project._id);
 
 				user._sentProjects.push(project._id);
@@ -255,13 +257,13 @@ apiRouter.route('/proyectos/:project_id')
 	.get(function(req, res) {
 
 		Project.findById(req.params.project_id).populate('_creator _comments').exec(function(err, project) {
-		
+
 			if (err) res.send(err);
-    
+
 			res.json(project);
 
 		});
-		
+
 	})
 
 	.put(function(req, res) {
@@ -269,7 +271,7 @@ apiRouter.route('/proyectos/:project_id')
 		if (admin) {
 
 			Project.findById(req.params.project_id, function(err, project) {
-		
+
 				if (req.body.like) project.likes += parseInt(req.body.like, 10);
 
 				project.save(function(err) {
@@ -297,7 +299,7 @@ apiRouter.route('/proyectos/:project_id')
 			}, function(err, user) {
 				if (err) res.send(err);
 				res.json({ message: 'Successfully deleted' });
-          
+
 			});
 
 		} else {
@@ -312,7 +314,7 @@ apiRouter.route('/proyectos/:project_id')
 apiRouter.route('/hilos')
 
 	.get(function(req, res) {
-		
+
 		Thread.find().populate('_creator _comments').exec(function(err, threads){
 			if (err) res.send(err);
 			res.json(threads);
@@ -356,7 +358,7 @@ apiRouter.route('/hilos/:thread_id')
 	})
 
 	.put(function(req, res) {
-		
+
 		if(admin) {
 
 			Thread.findById(req.params.thread_id, function(err, thread) {
@@ -396,7 +398,7 @@ apiRouter.route('/hilos/:thread_id')
 			}, function(err, user) {
 				if (err) res.send(err);
 				res.json({ message: 'Successfully deleted' });
-          
+
 			});
 
 		} else {
@@ -414,14 +416,14 @@ apiRouter.route('/hilos/:thread_id/comentarios')
 
 
 		Thread.findById(req.params.thread_id, function(err, thread) {
-		
+
 			var comment = new Comment();
 
 			comment.comment = req.body.comment;
 			comment._creator = req.decoded._id;
 
 			comment.save(function(err) {
-				
+
 				User.findById(req.decoded._id, function(err, user){
 					user._sentComments.push(comment._id);
 
@@ -450,7 +452,7 @@ apiRouter.route('/proyectos/:proyecto_id/comentarios')
 
 
 		Project.findById(req.params.proyecto_id, function(err, project) {
-		
+
 			var comment = new Comment();
 
 			comment.comment = req.body.comment;
@@ -484,12 +486,12 @@ apiRouter.route('/me')
 	.get(function(req, res) {
 
 		User.findById(req.decoded._id).populate('_sentProjects _sentThreads _sentComments').exec(function(err, user) {
-		
+
 			if (err) res.send(err);
-    
+
 			res.json(user);
 		});
-		
+
 	})
 
 	.put(function(req, res) {
@@ -508,7 +510,7 @@ apiRouter.route('/me')
 				if (req.body.password) user.password = req.body.password;
 
 				user.save(function(err) {
-					
+
 					if(err) res.send(err);
 
 					res.json({ message: 'Usuario actualizado!' });
@@ -517,7 +519,7 @@ apiRouter.route('/me')
 			} else {
 				res.json({message: 'Not you!'});
 			}
-		
+
 		});
 
 	});
@@ -534,7 +536,7 @@ apiRouter.route('/comentarios')
 
 apiRouter.route('/comentarios/:comment_id')
 
-	
+
 	.delete(function(req, res){
 
 		if(admin) {
@@ -621,7 +623,7 @@ apiRouter.route('/areas/:area_id')
 
 		if(admin) {
 			Area.findById(req.params.area_id, function(err, area) {
-				
+
 				if(req.body.name) area.name = req.body.name;
 
 				area.save(function(err) {
@@ -650,7 +652,7 @@ apiRouter.route('/areas/:area_id')
 			}, function(err, user) {
 				if (err) res.send(err);
 				res.json({ message: 'Successfully deleted' });
-          
+
 			});
 		} else {
 			return res.status(403).send({
@@ -663,16 +665,16 @@ apiRouter.route('/areas/:area_id')
 apiRouter.route('/users')
 
 	.get(function(req, res) {
-		
+
 
 		if (admin) {
 
 			User.find().populate('_sentProjects _sentThreads _sentComments').exec(function(err, users) {
-		
+
 				if (err) res.send(err);
-				
+
 				res.json(users);
-        
+
 			});
 		} else {
 			return res.status(403).send({
@@ -719,9 +721,9 @@ apiRouter.route('/users/:user_id')
 
 		if (admin) {
 			User.findById(req.params.user_id).populate('_sentProjects _sentThreads _sentComments').exec(function(err, user) {
-			
+
 				if (err) res.send(err);
-    
+
 				res.json(user);
 			});
 
@@ -732,13 +734,13 @@ apiRouter.route('/users/:user_id')
 			});
 		}
 
-		
+
 	})
 
 	.put(function(req, res) {
 
 		if(admin) {
-	
+
 			User.findById(req.params.user_id, function(err, user) {
 
 				if(err) res.send(err);
@@ -755,12 +757,12 @@ apiRouter.route('/users/:user_id')
 				if (req.body.email) user.email = req.body.email;
 
 				user.save(function(err) {
-					
+
 					if(err) res.send(err);
 
 					res.json({ message: 'Usuario actualizado!' });
 				});
-			
+
 			});
 		} else {
 			return res.status(403).send({
@@ -768,11 +770,11 @@ apiRouter.route('/users/:user_id')
 				menssage: 'Not admin'
 			});
 		}
-		
+
 	})
 
 	.delete(function(req, res) {
-		
+
 		if (admin) {
 
 		User.remove({
@@ -782,7 +784,7 @@ apiRouter.route('/users/:user_id')
 		}, function(err, user) {
 			if (err) res.send(err);
 			res.json({ message: 'Successfully deleted' });
-          
+
           });
 		} else {
 			return res.status(403).send({
@@ -816,7 +818,6 @@ apiRouter.route('/materiales/:material_id/quiz')
 			quiz.name = req.body.name;
 			quiz.points = req.body.points;
 			quiz._parentMaterial = req.params.material_id;
-
 			quiz.save(function(err) {
 
 				Material.findById(req.params.material_id, function(err, material) {
@@ -873,7 +874,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id')
 
 			});
 		} else {
-			
+
 			return res.status(403).send({
 				success: false,
 				message: 'Not admin'
@@ -892,7 +893,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id')
 			}, function(err, quiz) {
 				if (err) res.send(err);
 				res.json({ message: 'Successfully deleted' });
-          
+
 			});
 		} else {
 
@@ -1053,7 +1054,7 @@ apiRouter.route('/mensajes/')
 			message.visible = req.body.visible;
 
 			message.save(function(err) {
-				
+
 				if(err) res.send(err);
 
 				res.json({
@@ -1074,7 +1075,7 @@ apiRouter.route('/mensajes/')
 	});
 
 apiRouter.route('/mensajes/:message_id')
-	
+
 	.get(function(req, res) {
 
 		if (admin) {
@@ -1136,9 +1137,9 @@ apiRouter.route('/mensajes/:message_id')
 			Message.remove({
 				_id: req.params.message_id
 			}, function(err) {
-				
+
 				if(err) res.send(err);
-				
+
 				res.json({
 					message:'Message deleted'
 				});

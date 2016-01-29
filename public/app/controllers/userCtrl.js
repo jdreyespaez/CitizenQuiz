@@ -1,18 +1,18 @@
 angular.module('userCtrl', ['userService', 'areaService'])
 // user controller for the main page
-// inject the User factory 
+// inject the User factory
 
 .controller('userController', function(User) {
-    
+
     var vm = this;
 
-    
+
     vm.processing = true;
-  
+
     User.all() .success(function(data) {
-      
+
         vm.processing = false;
-      
+
         vm.users = data;
 
     });
@@ -20,7 +20,7 @@ angular.module('userCtrl', ['userService', 'areaService'])
     vm.deleteUser = function(id) {
 
         vm.processing = true;
-        
+
         User.delete(id)
             .success(function(data) {
 
@@ -35,18 +35,18 @@ angular.module('userCtrl', ['userService', 'areaService'])
 })
 
 .controller('userCreateController', function(User, Area) {
-    
+
     var vm = this;
 
     Area.all()
         .success(function(data) {
             vm.areas = data;
         });
- 
+
     vm.type = 'create';
-  
+
     vm.saveUser = function() {
-        
+
         vm.processing = true;
         vm.message = '';
 
@@ -75,11 +75,11 @@ angular.module('userCtrl', ['userService', 'areaService'])
     .success(function(data) {
         vm.userData = data;
     });
-  
+
     vm.saveUser = function() {
 
         vm.processing = true; vm.message = '';
-        
+
         User.update($routeParams.user_id, vm.userData) .success(function(data) {
             vm.processing = false;
             vm.userData = {};
@@ -91,11 +91,10 @@ angular.module('userCtrl', ['userService', 'areaService'])
 .controller('userViewController', function($routeParams, User) {
 
     var vm = this;
-    
+
     User.get($routeParams.user_id)
     .success(function(data) {
         vm.userData = data;
     });
 
 });
-

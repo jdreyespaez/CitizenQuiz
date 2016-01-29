@@ -24,7 +24,7 @@ angular.module('mainCtrl', [])
 
   // function to handle login form
   vm.doLogin = function() {
-    
+
     vm.processing = true;
 
     // clear the error
@@ -39,7 +39,7 @@ angular.module('mainCtrl', [])
           $location.path('/dashboard');
         else
           vm.error = data.message;
-        
+
       });
   };
 
@@ -47,7 +47,7 @@ angular.module('mainCtrl', [])
   vm.doLogout = function() {
     Auth.logout();
     vm.user = '';
-    
+
     $location.path('/login');
   };
 
