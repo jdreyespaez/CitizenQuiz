@@ -24,13 +24,16 @@
 		            <td>
 		            	<a ng-href="/materiales/{{ item._id }}">
 		            		<i class="fa fa-eye"></i>
-		            	</a>	
+		            	</a>
 		            	<a ng-href="/materiales/{{ item._id }}/edit">
 		            		<i class="fa fa-1x fa-pencil"></i>
 		            	</a>
 		            	<a href="#" ng-click="material.deleteMaterial(item._id)">
 		            		<i class="fa fa-1x fa-trash-o"></i>
-		            	</a>		
+		            	</a>
+									<a href="/materiales/{{ item._id }}/quiz">
+										<i class="fa fa-check-square-o"></i>
+									</a>
 		            </td>
 		          </tr>
 		        </tbody>
@@ -41,4 +44,3 @@
  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
 <a class="btn-floating btn-large waves-effect waves-light red" href="materiales/create"><i class="material-icons">add</i></a>
   </div>
-
