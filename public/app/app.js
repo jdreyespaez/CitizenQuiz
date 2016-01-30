@@ -8,7 +8,8 @@ angular.module('userApp', [
   'dashboardCtrl',
   'materialCtrl',
   'areaCtrl',
-  'messageCtrl'
+  'messageCtrl',
+  'quizCtrl'
 ])
 
 .config(function($httpProvider) {

@@ -808,7 +808,6 @@ apiRouter.route('/materiales/:material_id/quiz')
 
 	.post(function(req, res) {
 
-
 		if(admin) {
 
 			var quiz = new Quiz();

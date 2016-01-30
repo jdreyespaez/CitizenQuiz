@@ -1,7 +1,7 @@
 angular.module('app.routes', ['ngRoute'])
 
 .config(function($routeProvider, $locationProvider) {
-  
+
   $routeProvider
 
     .when('/', {
@@ -67,6 +67,12 @@ angular.module('app.routes', ['ngRoute'])
       templateUrl: 'app/views/pages/materials/single.html',
       controller: 'materialEditController',
       controllerAs: 'material'
+    })
+
+    .when('/materiales/:material_id/quiz', {
+      templateUrl: 'app/views/pages/quizzes/single.html',
+      controller: 'quizCreateController',
+      controllerAs: 'quiz'
     })
 
     .when('/areas', {
