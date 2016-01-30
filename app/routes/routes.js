@@ -251,7 +251,6 @@ apiRouter.route('/proyectos')
 
 	});
 
-
 apiRouter.route('/proyectos/:project_id')
 
 	.get(function(req, res) {
@@ -666,7 +665,6 @@ apiRouter.route('/users')
 
 	.get(function(req, res) {
 
-
 		if (admin) {
 
 			User.find().populate('_sentProjects _sentThreads _sentComments').exec(function(err, users) {
@@ -798,7 +796,7 @@ apiRouter.route('/materiales/:material_id/quiz')
 
 	.get(function(req, res) {
 
-			quiz.findOne({
+			Quiz.findOne({
 				_parentMaterial: req.params.material_id
 			}).populate('_questions _parentMaterial').exec(function(err, quiz) {
 				if(err) res.send(err);
@@ -813,10 +811,11 @@ apiRouter.route('/materiales/:material_id/quiz')
 
 		if(admin) {
 
-			var quiz = new quiz();
+			var quiz = new Quiz();
 
 			quiz.name = req.body.name;
 			quiz.points = req.body.points;
+
 			quiz._parentMaterial = req.params.material_id;
 			quiz.save(function(err) {
 
@@ -851,7 +850,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id')
 
 	.get(function(req, res) {
 
-		quiz.findById(req.params.quiz_id).pupulate('_parentMaterial').exec(function(err, quiz) {
+		Quiz.findById(req.params.quiz_id).populate('_parentMaterial _questions').exec(function(err, quiz) {
 			if (err) res.send(err);
 			res.json(quiz);
 		});
@@ -862,7 +861,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id')
 
 		if(admin) {
 
-			quiz.findById(req.params.quiz_id, function(err, quiz) {
+			Quiz.findById(req.params.quiz_id, function(err, quiz) {
 
 				if (req.body.name) quiz.name = req.body.name;
 				if (req.body.points) quiz.points = req.body.points;
@@ -911,7 +910,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id/preguntas')
 
 		Pregunta.find({
 			_parentquiz: req.params.quiz_id
-		}).populate('_parentquiz').exec(function(err, preguntas) {
+		}).populate('_parentquiz ').exec(function(err, preguntas) {
 			if (err) res.send(err);
 			res.json(preguntas);
 		});
@@ -930,7 +929,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id/preguntas')
 
 			pregunta.save(function(err){
 
-				quiz.findById(req.params.quiz_id, function(err, quiz){
+				Quiz.findById(req.params.quiz_id, function(err, quiz){
 
 					quiz._questions.push(pregunta._id);
 
@@ -941,7 +940,7 @@ apiRouter.route('/materiales/:material_id/quiz/:quiz_id/preguntas')
 				});
 
 				if (err) res.send(err);
-				res.json({message: 'Updated'});
+				res.json({message: 'Created'});
 			});
 
 		} else {
