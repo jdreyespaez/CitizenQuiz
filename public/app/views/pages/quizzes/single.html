@@ -1,0 +1,32 @@
+<div class="container single-user">
+	<h4 ng-if="quiz.type === 'create'" class="title-default grey-text users__title row">
+		Crear un quiz
+	</h4>
+	<h4 ng-if="quiz.type === 'edit'" class="title-default grey-text users__title row">
+		Editar un quiz
+	</h4>
+</div>
+
+<div class="container single-user__form">
+	<div class="row card-panel">
+    <form class="col s12" ng-submit="quiz.saveQuizl()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="quiz.quizData.name" type="text" class="validate" placeholder="Nombre">
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="quiz.quizData.points" type="number" class="validate" placeholder="Puntos">
+        </div>
+      </div>
+ 	   	<button class="btn waves-effect waves-light input-field col s12  m4 l4 offset-m4 offset-l4" type="submit">
+	      	<span ng-if="quiz.type === 'create'">Crear quiz</span>
+	      	<span ng-if="quiz.type === 'edit'">Actualizar quiz</span>
+	    </button>
+    </form>
+    <!-- <div class="row u-alert">
+	  	<div class="center-align green-text" ng-if="material.message"> {{ material.message }} </div>
+	</div> -->
+  </div>
+</div>
